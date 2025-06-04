@@ -86,8 +86,8 @@ const layoutsMap = {
 const cardContentMap = {
   card1: {
     image: 'https://m.media-amazon.com/images/I/91QsI+ZEgbL.jpg',
-    title: 'The Wild Robot',
-    label: 'Movie',
+    title: 'Chernobyl',
+    label: 'Article',
   },
   card2: {
     image: 'https://m.media-amazon.com/images/I/81ANaVZk5LL._AC_UF1000,1000_QL80_.jpg',
@@ -106,28 +106,28 @@ const cardContentMap = {
   },
   card5: {
     image: 'https://images.squarespace-cdn.com/content/v1/58e20fa444024364dbad7db9/154c2924-dfb1-4992-a753-2ab307703267/Screen+Shot+2022-02-04+at+10.12.25+AM.png',
-    title: 'Wild Learning',
+    title: 'Dune',
     label: 'Movie',
   },
   card6: {
-    image: 'https://upload.wikimedia.org/wikipedia/en/3/37/Chappell_Roan_-_Hot_to_Go%21.jpg',
+    image: 'https://www.prsformusic.com/-/media/images/2025-brand-refresh-headers/licensing-v2.ashx?h=2500&w=2500&la=en&hash=334ACB27F242464262BEDC9299C97667',
     title: 'Chappell Roan',
     label: 'Music',
   },
   card7: {
     image: 'https://www.tainstruments.com/wp-content/uploads/MicrosoftTeams-image-7-scaled.jpg',
-    title: 'Scientific Tools',
-    label: 'Movie',
+    title: 'Beach',
+    label: 'Article',
   },
   card8: {
-    image: 'https://image.simplecastcdn.com/images/5b7d8c77-15ba-4eff-a999-2e725db21db5/230d34ac-480a-44b8-9349-c9cc80974b6d/3000x3000/sxm-cover-smartless-3000x3000-d.jpg?aid=rss_feed',
-    title: 'SmartLess',
-    label: 'Movie',
+    image: 'https://www.bbcselect.com/uploads/2021/11/Premium-iconic-image.png',
+    title: 'BBC Podcasts',
+    label: 'AudioBook',
   },
   card9: {
-    image: 'https://m.media-amazon.com/images/I/61i95pK0DoL._SL500_.jpg',
-    title: 'Fourth Wing',
-    label: 'Movie',
+    image: 'https://m.media-amazon.com/images/I/81mIt5y6fRL.jpg',
+    title: "The HitchHiker's Guide to the Galaxy",
+    label: 'Audiobook',
   },
 };
 
