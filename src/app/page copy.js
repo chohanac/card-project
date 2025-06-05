@@ -5,65 +5,76 @@ import Head from 'next/head';
 import { Box, Card, Typography } from '@mui/material';
 import { motion, LayoutGroup } from 'framer-motion';
 import IconButton from '@mui/material/IconButton';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import RepeatIcon from '@mui/icons-material/Repeat';
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import AddIcon from '@mui/icons-material/Add';
+
 const CELL_SIZE = 100;
 const GAP = 16;
 const ROWS = 3;
 const COLS = 6;
+
 const baseLayout = [
   ['card1', 'card2', 'card2', 'card3', 'card3', 'card4'],
   ['card1', 'card5', 'card5', 'card3', 'card3', 'card6'],
   ['card7', 'card5', 'card5', 'card8', 'card9', 'card9'],
 ];
+
 const card3ExpandedLayout = [
   ['card2', 'card3', 'card3', 'card3', 'card3', 'card4'],
   ['card1', 'card3', 'card3', 'card3', 'card3', 'card6'],
   ['card7', 'card5', 'card5', 'card8', 'card9', 'card9'],
 ];
+
 const card2ExpandedLayout = [
   ['card1', 'card2', 'card2', 'card2', 'card3', 'card4'],
   ['card1', 'card2', 'card2', 'card2', 'card3', 'card6'],
   ['card7', 'card5', 'card5', 'card8', 'card9', 'card9'],
 ];
+
 const card1ExpandedLayout = [
   ['card1', 'card1', 'card2', 'card3', 'card3', 'card4'],
   ['card1', 'card1', 'card5', 'card3', 'card3', 'card6'],
   ['card1', 'card1', 'card7', 'card8', 'card9', 'card9'],
 ];
+
 const card5ExpandedLayout = [
   ['card1', 'card2', 'card2', 'card3', 'card4', 'card6'],
   ['card1', 'card5', 'card5', 'card5', 'card5', 'card9'],
   ['card7', 'card5', 'card5', 'card5', 'card5', 'card8'],
 ];
+
 const card7Layout = [
   ['card7', 'card7', 'card1', 'card3', 'card3', 'card4'],
   ['card7', 'card7', 'card2', 'card3', 'card3', 'card6'],
   ['card7', 'card7', 'card5', 'card8', 'card9', 'card9'],
 ];
+
 const card8Layout = [
   ['card1', 'card2', 'card2', 'card3', 'card3', 'card4'],
   ['card1', 'card5', 'card8', 'card8', 'card8', 'card6'],
   ['card7', 'card5', 'card8', 'card8', 'card8', 'card9'],
 ];
+
 const card9Layout = [
   ['card1', 'card2', 'card2', 'card3', 'card4', 'card6'],
   ['card1', 'card5', 'card5', 'card9', 'card9', 'card9'],
   ['card7', 'card8', 'card8', 'card9', 'card9', 'card9'],
 ];
+
 const card6Layout = [
   ['card1', 'card2', 'card2', 'card3', 'card3', 'card4'],
   ['card1', 'card5', 'card8', 'card6', 'card6', 'card6'],
   ['card7', 'card5', 'card9', 'card6', 'card6', 'card6'],
 ];
+
 const card4Layout = [
   ['card1', 'card2', 'card2', 'card3', 'card4', 'card4'],
   ['card1', 'card5', 'card8', 'card6', 'card4', 'card4'],
   ['card7', 'card5', 'card9', 'card9', 'card4', 'card4'],
 ];
+
 const layoutsMap = {
   card3: card3ExpandedLayout,
   card2: card2ExpandedLayout,
@@ -75,6 +86,7 @@ const layoutsMap = {
   card6: card6Layout,
   card4: card4Layout,
 };
+
 const cardContentMap = {
   card1: {
     image: 'https://m.media-amazon.com/images/I/91QsI+ZEgbL.jpg',
@@ -122,10 +134,8 @@ const cardContentMap = {
     label: 'Audiobook',
   },
 };
-function DynamicCard({ width = 100, height = 110, label, image, title, mediaLabel, isCompact = false, expanded = false }) {
 
-
-
+function DynamicCard({ width = 100, height = 110, label, image, title, mediaLabel }) {
   const getTransform = () => {
     // return 'scale(1) translateY(0%)';
     if (width === height) return 'scale(1.1) translateY(-5%)';
@@ -133,122 +143,9 @@ function DynamicCard({ width = 100, height = 110, label, image, title, mediaLabe
     return 'scale(1.15) translateY(5%)';
   };
 
-
-
-
-
-  const [hovered, setHovered] = useState(false);
-  const isArticle = mediaLabel === 'Article';
-  const shouldShowArticleView = isArticle && (expanded || hovered);
-
-
-
-
-
-
-
-  if (shouldShowArticleView) {
-    return (
-      <Box
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        sx={{
-          width,
-          height,
-          display: 'flex',
-          flexDirection: 'column',
-          borderRadius: '1rem',
-          overflow: 'hidden',
-          position: 'relative',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.6)',
-          border: '10px solid #555',
-          backgroundColor: '#000',
-          color: 'white',
-          userSelect: 'none',
-        }}
-      >
-        {/* Image section */}
-        <Box
-          sx={{
-            position: 'relative',
-            flex: '0 0 33%',
-            overflow: 'hidden',
-          }}
-        >
-          <Box
-            component="img"
-            src={image}
-            alt={title}
-            sx={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              display: 'block',
-            }}
-          />
-
-          <Box
-            sx={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%)',
-              pointerEvents: 'none',
-            }}
-          />
-
-          <Box
-            sx={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 2,
-            }}
-          >
-            <button
-              style={{
-                padding: '10px 20px',
-                borderRadius: 8,
-                border: '2px solid white',
-                backgroundColor: 'transparent',
-                color: 'white',
-                fontWeight: 'bold',
-                cursor: 'pointer',
-                fontSize: '0.9rem',
-              }}
-              onClick={(e) => {
-                e.stopPropagation();
-                alert(`Reading "${title}"`);
-              }}
-              onMouseDown={(e) => e.preventDefault()}
-            >
-              Read
-            </button>
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            flex: '1 1 67%',
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          }}
-        >
-          <Typography variant="body2" sx={{ color: '#ddd' }}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Praesent vehicula augue a metus facilisis, at facilisis ligula sodales.
-          </Typography>
-        </Box>
-      </Box>
-    );
-  }
-
-
-
-
-
   return (
+
+
     <Box
       sx={{
         position: 'relative',
@@ -259,19 +156,21 @@ function DynamicCard({ width = 100, height = 110, label, image, title, mediaLabe
         },
       }}
     >
+
+
       <Card
         sx={{
           width,
           height,
-          borderRadius: '1rem',
+          borderRadius: '20px',
           overflow: 'hidden',
           position: 'relative',
           boxShadow: '0 4px 20px rgba(0,0,0,0.6)',
-          border: '12px solid rgb(48, 47, 52)',
+          border: '10px solid #555',
           backgroundColor: '#000',
         }}
       >
-        <Box sx={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 0 }}>
+        <Box sx={{ position: 'absolute', inset: 0, overflow: 'hidden', borderRadius: 'inherit', zIndex: 0 }}>
           <Box
             component="img"
             src={image}
@@ -285,49 +184,40 @@ function DynamicCard({ width = 100, height = 110, label, image, title, mediaLabe
               transition: 'transform 0.3s ease',
             }}
           />
-          <Box
-            sx={{
-              position: 'absolute',
-              inset: 0,
-              background: 'linear-gradient(to bottom, rgba(0,0,0,0) 50%, rgba(0,0,0,1) 90%)',
-              zIndex: 1,
-            }}
-          />
         </Box>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 10,
-            left: 10,
-            px: 2,
-            borderRadius: '6px',
-            zIndex: 2,
-            background: 'linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0,0,0,0.1))',
-            backdropFilter: 'blur(2px)',
-            maxWidth: '70%',
-          }}
-        >
-          <Typography
-            variant="caption"
-            sx={{
-              color: "lightgray",
-              fontSize: '0.7rem',
-              whiteSpace: 'nowrap',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}
-          >
+
+        <Box sx={{ position: 'absolute', top: 10, left: 10, backgroundColor: 'rgba(0,0,0,0.6)', px: 1, py: 0.2, borderRadius: 1, zIndex: 2 }}>
+          <Typography variant="caption" sx={{ color: 'white', fontSize: '0.75rem' }}>
             {mediaLabel}
           </Typography>
         </Box>
-        <Box sx={{ position: 'absolute', bottom: 12, left: 12, right: 12, color: 'white', zIndex: 2 }}>
+
+
+
+        <Box sx={{ position: 'absolute', bottom: 12, left: 12, right: 12, color: 'white', textShadow: '0 1px 3px rgba(0,0,0,0.8)', zIndex: 2 }}>
           <Typography variant="h6" sx={{ fontWeight: 600, fontSize: '1rem' }}>{title}</Typography>
           <Box sx={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.7rem', color: '#ccc' }}>
-            <span >2024 | Prime Video</span>
-            <span >1h 42m</span>
+            <span>2024 | Prime Video</span>
+            <span>1h 42m</span>
           </Box>
         </Box>
+
+
+
+
+
+
+
+
+
+
+
+
+
       </Card>
+
+
+
       <Box
         className="arrow-buttons"
         sx={{
@@ -336,37 +226,38 @@ function DynamicCard({ width = 100, height = 110, label, image, title, mediaLabe
           right: 8,
           zIndex: 3,
           display: 'none',
+          flexDirection: 'column',
           gap: 0.5,
-          padding: 1.5,
           '& > button': {
-            backgroundColor: 'rgba(255,255,255,0.5)',
-            color: 'black',
-            width: 28,
-            height: 28,
+            backgroundColor: 'rgba(255,255,255,0.2)',
+            color: 'white',
+            width: 32,
+            height: 32,
             '&:hover': {
-              backgroundColor: 'rgba(255,255,255,0.8)',
+              backgroundColor: 'rgba(255,255,255,0.4)',
             },
           },
         }}
       >
-        <IconButton size="small" sx={{ svg: { transform: 'scale(0.85)', opacity: 0.8 } }}>
-          {mediaLabel === 'Article' ? (
-            <AddIcon fontSize="small" />
-          ) : (
-            <FavoriteBorderIcon fontSize="small" />
-          )}
-        </IconButton>
-        {!isCompact && <IconButton size="small" sx={{ svg: { transform: 'scale(0.85)', opacity: 0.8 } }}><ArrowForwardIcon fontSize="small" /></IconButton>}
-        <IconButton size="small" sx={{ svg: { transform: 'scale(0.85)', opacity: 0.8 } }}><RepeatIcon fontSize="small" /></IconButton>
-        <IconButton size="small" sx={{ svg: { transform: 'scale(0.85)', opacity: 0.8 } }}><MoreHorizIcon fontSize="small" /></IconButton>
+        <IconButton size="small"><ArrowUpwardIcon fontSize="small" /></IconButton>
+        <IconButton size="small"><ArrowDownwardIcon fontSize="small" /></IconButton>
+        <IconButton size="small"><ArrowBackIcon fontSize="small" /></IconButton>
+        <IconButton size="small"><ArrowForwardIcon fontSize="small" /></IconButton>
       </Box>
     </Box >
+
+
+
+
+
+
+
+
   );
 }
 
 export default function Page() {
   const [expandedCard, setExpandedCard] = useState(null);
-  const [hoveredCard, setHoveredCard] = useState(null);
   const containerRef = useRef(null);
   const [cellSize, setCellSize] = useState(100);
 
@@ -486,13 +377,6 @@ export default function Page() {
                     if (!isExpandable) return;
                     setExpandedCard(color === expandedCard ? null : color);
                   }}
-                  onMouseEnter={() => {
-                    if (!isExpandable) return;
-                    setHoveredCard(color);
-                  }}
-                  onMouseLeave={() => {
-                    setHoveredCard(null);
-                  }}
                   whileHover={{ scale: 1.03 }}
                 >
                   <DynamicCard
@@ -502,8 +386,6 @@ export default function Page() {
                     image={content.image}
                     title={content.title}
                     mediaLabel={content.label}
-                    isCompact={width === cellSize}
-                    expanded={expandedCard === color || hoveredCard === color && content.label === 'Article'}
                   />
                 </motion.div>
               );
